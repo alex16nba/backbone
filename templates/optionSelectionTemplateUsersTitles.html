@@ -1,0 +1,17 @@
+<% if(typeof selectedType!='undefined'){ %>
+    <option value="">Please select a <%=selectedType%></option>
+<%} %>
+<% for ( var i in data) { %>
+    <% if ( typeof Id != 'undefined') { %>
+        <% if(Id == data[i].title ) { %>
+            <option selected value='<%=data[i].title%>'><%= data[i].title ||
+                data[i].get('title') %> </option>
+        <% } else { %>
+            <option value='<%=data[i].title%>'><%= data[i].title ||
+                data[i].get('title') %></option>
+        <% } %>
+    <% } else {%>
+            <option value='<%=data[i].title%>'><%= data[i].title ||
+                data[i].get('title') %></option>
+    <% } %>
+<% } %>

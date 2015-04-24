@@ -1,0 +1,35 @@
+<div id="<%=name%>-<%=type%>-alert" class="modal bs-example-modal-sm"
+    tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">
+                    ×
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel">
+                   <%=name.toUpperCase()%> <%=type%>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to <%=name%> <%=title%> <%=type%>?</p>
+                <ul class="list-unstyled clearfix group-btn-options">
+                    <li>
+                        <button id="<%=name%>-<%=type%>"
+                            class="btn btn-default pull-left"
+                            type="button"
+                            data-dismiss="modal">
+                            Yes, please <%=name%>
+                        </button>
+                    </li>
+                    <li>
+                        <span>or</span>
+                    </li>
+                    <li>
+                        <a class="button" data-dismiss="modal"
+                            href="">Cancel</a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

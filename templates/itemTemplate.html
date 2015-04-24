@@ -1,0 +1,71 @@
+<div class="clear-fix">
+    <div class="white-box clearfix single-item">
+        <figure class="pull-left col-md-2">
+            <% if ( (typeof image_uid !='undefined') && (image_uid != "") &&
+                (image_uid) ) { %>
+                <img class="item-img" alt="<%=title%>" src="<%=image_uid%>">
+            <% } else { %>
+                <img class="item-img" alt="title" src="src/img/dummyicon.png">
+            <% } %>
+        </figure>
+
+        <div class="caption clearfix">
+            <div class="btn-group pull-right itemBtnGroup" data-item-id="<%=id%>">
+                <div class="actions-button dropdown-toggle modal-item"
+                    data-toggle="dropdown"  data-item-id="<%=id%>">
+                    Actions <i class="actions"></i>
+                </div>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="book-item-modal">
+                            Book item
+                        </a>
+                    </li>
+                    <% if (loggedUserRole == 'company_super_admin' || isUnderSupervision == true) { %>
+                        <li>
+                            <a class="edit-item" data-toggle="modal" href="#">
+                                Edit item
+                            </a>
+                        </li>
+                        <li>
+                            <a class="clone-item" data-toggle="modal" href="#">
+                                Clone item
+                            </a>
+                        </li>
+                        <li>
+                            <a class="delete-item" data-target-id="<%=id %>" data-toggle="modal" href="#">
+                                Delete
+                            </a>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="col-md-8 col-xs-7">
+                <h3>
+                    <a href="#items/<%=id%>"><%= title %></a>
+                </h3>
+                <span>Item code: <%=item_code%></br></span>
+                <span class="muted">
+                    <% if(!active_booking || active_booking.status !== "in_progress") { %>
+                        <span class="glyphicon glyphicon-ok"></span>
+                    <% } else if (active_booking && active_booking.status === "in_progress") { %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    <% } %>
+                        item is
+                    <% if(!active_booking || active_booking.status !== "in_progress") { %>
+                        available
+                    <% } else if (active_booking && active_booking.status === "in_progress") { %>
+                        booked until
+                        <%=(active_booking) ? moment(active_booking.end_date).format('MMMM Do YYYY') : '' %>
+                    <% } %>
+                </span>
+            </div>
+
+            <div class="collapse" id="multiple-item">
+                test collapse multiple items
+            </div>
+        </div>
+    </div>
+</div>
+

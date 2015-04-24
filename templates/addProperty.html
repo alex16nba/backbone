@@ -1,0 +1,98 @@
+<form id="add-property-form">
+    <div class="property">
+        <h2>Property
+            <span class="pull-right">
+                <input id="category_properties_attributes_destroy"
+                    type="hidden" value="false"
+                    >
+                </input>
+                <% if(typeof categoryId == 'number') { %>
+                    <a class="text-info small remove_nested_fields"
+                        data-association="properties">Remove property
+                    </a>
+                <% } %>
+            </span>
+        </h2>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"
+                for="category_properties_attributes_name">Name
+            </label>
+            <div class="col-sm-6">
+                <input
+                    type="text" value="" class="form-control col-sm-6 disabled" size="30"
+                    <% if(typeof categoryId == 'number') { %>
+                        name="name"
+                    <% } else { %>
+                        disabled="disabled"
+                    <% } %>
+                    />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label">
+                <label class="control-label col-sm-3"
+                    for="category_properties_attributes_property_type">
+                    Property type
+                </label>
+            </div>
+            <div class="controls col-sm-6">
+                <select class="col-sm-3 form-control disabled"
+                <% if(typeof categoryId == 'number') { %>
+                    name="property_type"
+                <% } else { %>
+                    disabled="disabled">
+                <% } %>
+                    <option value="text">Single Value</option>
+                    <option value="select" selected="selected">Select Value</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <input
+                    class="form-control disabled" value="" placeholder="1st value, 2nd value"size="30" type="text"
+                    <% if(typeof categoryId == 'number') { %>
+                        name="select_values"
+                    <% } else { %>
+                        disabled="disabled"
+                    <% } %>
+                        />
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Set property as
+            </label>
+            <div class="col-sm-6">
+                <label class="label_radio">
+                    <input class="master-radio-hidden "disabled"" type="hidden"
+                    value = "0"
+                    <% if(typeof categoryId == 'number') { %>
+                        name="master"
+                    <% } else { %>
+                        disabled="disabled"
+                    <% } %>
+                    />
+                    <input class="master-radio disabled" id="disabled"
+                        type="radio" value="true"
+                    <% if(typeof categoryId == 'number') { %>
+                        name="master"
+                    <% } else { %>
+                        disabled="disabled"
+                    <% } %>
+                    /> Master
+                </label>
+            </div>
+        </div>
+        <div class="add-nested-fields-container">
+            <% if(typeof categoryId == 'number') { %>
+                <a class="button add_<%=modalId%>_nested_fields">
+                Add property
+                </a>
+            <% } %>
+        </div>
+    </div>
+</form>
+
+

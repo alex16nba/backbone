@@ -1,0 +1,110 @@
+<li>
+    <div class="white-box clearfix ">
+        <figure class="pull-left">
+             <% if (((pageType == 'users') || (pageType == 'items')) && (image_uid)) { %>
+                <img src="<%=image_uid%>" alt="">
+            <% } else { %>
+                <img class="item-booking-img" alt="title" src="src/img/dummyicon.png">
+            <% } %>
+        </figure>
+        <div class="caption clearfix">
+            <% if (typeof popUpTemplate == 'undefined') { %>
+                <% if ((status != 'completed') && (status != 'canceled') &&
+                    (status != 'invalid') && (status != 'rejected') &&
+                    (loggedUserRole == 'company_super_admin' ||
+                    (loggedUserRole == "company_admin" && isUnderSupervision == true)
+                    || loggedUserId == user.id)) { %>
+                    <div class="btn-group pull-right">
+                        <div class="dropdown-toggle" data-toggle="dropdown">
+                            Actions <i class="actions"></i>
+                        </div>
+                        <ul class="dropdown-menu" data-booking-id= <%= id %>>
+                            <% if (status == "in_progress" &&
+                                (item.needs_approval == false ||
+                                isUnderSupervision == true ||
+                                loggedUserRole == 'company_super_admin'||
+                                (loggedUserId == user.id && item.needs_approval == false))) { %>
+                                    <li><a class="return-item" href="#">Return item</a></li>
+                            <% } else if (status == 'accepted' && pickup_today == true
+                                && item.available == true  &&
+                                (item.needs_approval == false ||
+                                isUnderSupervision == true ||
+                                loggedUserRole == 'company_super_admin'||
+                                (loggedUserId == user.id && item.needs_approval == false))) { %>
+                                    <li><a class= "pick-up" href="#">Pick-up</a></li>
+                            <% } %>
+                            <% if (status != "in_progress") { %>
+                                <li><a class="cancel-booking" href="#">Cancel</a></li>
+                            <% } %>
+                            <% if (status == "pending" && in_conflict == false &&
+                                (isUnderSupervision == true ||
+                                loggedUserRole == 'company_super_admin')) { %>
+                                <li><a class="accept-booking" href="#">Accept</a></li>
+                                <li><a class="reject-booking" href="#">Reject</a></li>
+                            <% } else if (status == "pending" && in_conflict == true &&
+                                (isUnderSupervision == true ||
+                                loggedUserRole == 'company_super_admin')) { %>
+                                <li><a class="show-conflicting-bookings" href="#">
+                                    Show conflicts</a></li>
+                            <% } %>
+                            <% if (overdue_days < 1) { %>
+                                <li><a class="edit-booking" data-target="#edit-booking-modal"
+                                    data-toggle="modal"href="#">Edit booking</a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% } %>
+                <div class="col-md-8">
+            <% } else { %>
+                <div class="col-md-10 one-booking">
+            <% } %>
+                <p style="margin:0">
+                    <% if(loggedUserRole == 'company_user') {
+                        %>
+                            <span class="userName"><%=user.first_name%> <%=user.last_name%>
+                            </span> booked
+                        <% } else {
+                            %>
+                            <a class="userName" href="#users/<%=user_id%>">
+                                <%=user.first_name%> <%=user.last_name%>
+                            </a> booked
+                            <% } %>
+
+                    <% if (typeof multiple !='undefined') { %>
+                        <% if (multiple === true || pageType == 'users' ||
+                            pageType == 'bookings') {%>
+                            <a href="#items/<%=item_id%>">
+                                <%= item.title%></a>
+                        <% } else { %>
+                            this item
+                        <% } %>
+                    <% } %>
+                    <% if (booking_days <= 1) { %>
+                        </a> for <%= booking_days %> day
+                    <% } else { %>
+                        </a> for <%= booking_days %> days
+                    <% } %>
+                </p>
+
+                <strong>Start date:</strong>
+                <span class="text-muted"><%= start_date %></span><br/>
+                <strong> End date:</strong>
+                <span class="text-muted"><%= end_date %></span>
+
+                <p class="status-label">
+                    <i class="sprite-icon sprite-icon-<%= status%>">
+                    </i>
+                    <% if (start_date_pending != null && end_date_pending != null) { %>
+                        <% if (status == "pending") { %>
+                            Booking and edit booking is <%=status.split("_").join(" ")%>
+                        <% } else if (status == "accepted") { %>
+                            Booking is <%=status.split("_").join(" ")%> and edit booking is pending
+                        <% } %>
+                    <% } else { %>
+                    Booking is <%=status.split("_").join(" ")%>
+                    <% } %>
+                </p>
+            </div>
+        </div>
+    </div>
+</li>

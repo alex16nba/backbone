@@ -1,0 +1,177 @@
+
+<div id="bookings-page" class="col-md-10 content clearfix">
+<div class="col-md-12">
+    <div class="page-header">
+        <h1>Bookings
+            <button class="btn btn-default filterBtn pull-right" data-target="#demo"
+                data-toggle="collapse" type="button">
+                <span >
+                    Filters
+                    <i id="filter" class="filter-button-down pull-right">
+                    </i>
+                </span>
+            </button>
+        </h1>
+    </div>
+
+    <div class="collapse" id="demo">
+        <form accept-charset="UTF-8" action=""
+            class="form-search form-horizontal" method="get"
+            id="bookings-form">
+            <fieldset>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="item_title">
+                            Item name
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input class="form-control inputFilter" id="item_title" type="text" name="item_title">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="item_code">
+                            Item code
+                        </label>
+
+                        <div class="col-sm-6">
+                            <input class="form-control inputFilter" id="item_code" type="text" name="item_code">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="start">
+                            Start date
+                        </label>
+
+                        <div class="col-sm-6">
+                            <input class="form-control inputFilter" id="start" type="text" name="start_date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="end">
+                            End date
+                        </label>
+
+                        <div class="col-sm-6">
+                            <input class="form-control inputFilter" id="end" type="text" name="end_date">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col-sm-6 pull-right" id="modal-users-list">
+                            <input id="user-select" type="text" name="user_id" class="form-control typeahead selectFilter">
+                        </div>
+
+                        <label class="col-sm-3 control-label pull-right"
+                               for="user-select">
+                            User
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 pull-right">
+                            <select class="chosen-nosearch form-control selectFilter" name="location_id"
+                                    id="select-location">
+                                <option val=""></option>
+                            </select>
+                        </div>
+                        <label class="col-sm-3 control-label pull-right">
+                            Location
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 pull-right">
+                            <select class="chosen-nosearch form-control selectFilter" name="status">
+                                <option value="">All bookings</option>
+                                <option value="accepted">
+                                Accepted
+                                </option>
+                                <option value="pending">
+                                    Pending
+                                </option>
+                                <option value="rejected">
+                                    Rejected
+                                </option>
+                                <option value="invalid">
+                                    Invalid
+                                </option>
+                                <option value="canceled">
+                                    Canceled
+                                </option>
+                                <option value="in_progress">
+                                    In progress
+                                </option>
+                                <option value="completed">
+                                    Completed
+                                </option>
+                            </select>
+                        </div>
+                        <label class="col-sm-3 control-label pull-right">
+                            Status
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-actions" style="margin:20px 0;">
+                        <a class="filters-reset">Reset filters</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="col-md-12">
+<!-- Nav tabs -->
+
+    <ul class="nav nav-tabs nav-decoration">
+        <li class="active">
+            <a class='bookings' data-toggle="tab" href="#all-bookings">
+                All bookings
+            </a>
+        </li>
+        <li>
+            <a class='pending' data-toggle="tab" href="#booking-requests">
+                Booking requests
+            </a>
+        </li>
+
+        <li>
+            <a class='overdue' data-toggle="tab" href="#overdue-bookings">
+                Overdue bookings
+            </a>
+        </li>
+
+    </ul><!-- Tab panes -->
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="all-bookings">
+            <ul class="thumbnails booking list-unstyled" id="booking-history">
+            </ul>
+        </div>
+
+        <div class="tab-pane" id="booking-requests">
+            <div class="row">
+                <ul class="latest-requests clearfix list-unstyled col-md-12 ">
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="overdue-bookings">
+            <div class="spacer-horizontal"></div>
+            <div class="row">
+                <ul class="overdue-items clearfix list-unstyled col-md-12">
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

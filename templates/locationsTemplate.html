@@ -1,0 +1,21 @@
+<div class="col-md-10 content clearfix" id="location_page">
+    <div class="col-md-12">
+    <div class="page-header">
+        <h1>
+            <span id="locations-counter">Locations</span>
+            <% if (loggedUserRole == 'company_super_admin') { %>
+                <button class="btn btn-default pull-right"
+                    data-target="#add-location-modal"
+                    data-toggle="modal" type="button"
+                    id="add-location" type="button"> New Location
+                </button>
+            <% } %>
+        </h1>
+    </div>
+    <div class="row">
+        <ul class="thumbnails list-unstyled clearfix" id="locations-list">
+        </ul>
+    </div>
+    </div>
+    <div class="col-md-12 text-center" id="paginator"></div>
+</div>

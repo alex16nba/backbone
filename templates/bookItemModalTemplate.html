@@ -1,0 +1,88 @@
+<!-- Booking Modal-->
+<div class="modal" id="<%=action%>-booking-modal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <span class="action-booking-title"><%=action_booking_title%></span>
+                    booking for <%=title%></h4>
+                <% if (action == 'edit') { %>
+                    <input id="edit-bookingId" type="hidden" name="edit-bookingId"
+                         value=<%=editedBookingId%>>
+                    <input id="edit-bookingStatus" type="hidden" name="edit-bookingStatus"
+                        value=<%=editedBookingStatus%>>
+                    <input id="edit-booking-start-date" type="hidden" name="edit-booking-start-date" value="">
+                    <input id="edit-booking-end-date" type="hidden" name="edit-booking-end-date" value="">
+                <% } %>
+                    <input id="edit-booking-for-item" type="hidden" name="edit-booking-for-item" value=<%= id%>>
+                    <input id="edit-booking-for-item-approval" type="hidden" name="edit-booking-for-item-approval" value=<%= needs_approval %>>
+            </div>
+            <div class="modal-body">
+                <div class="white-box clearfix ">
+                    <% if ((loggedUserRole == 'company_super_admin' || isUnderSupervision == true) && action == 'create' ) { %>
+                        <div class="col-md-12 col-xs-7" id="modal-users-list">
+                            <p>Pick a user</p>
+                            <input type="text" class="form-control typeahead"
+                                placeholder="Search for a user ..." >
+                        </div>
+                    <% } %>
+                    <div id="calendar-modal-<%=action%>" class='monthView col-md-12
+                        clearfix month-view-modal'>
+                    </div>
+                    <div class="spacer-horizontal-half"></div>
+                    <div class="col-md-12">
+                        <div class="pull-left col-md-5 col-md-offset-1">
+                            <div>
+                                <i class="sprite-icon-time icon-time icon-white">
+                                </i>
+                                <label class="control-label">Start date</label>
+                                <div>
+                                    <span class="text-muted" id="start-date-modal">
+                                    </span>
+                                    <input class="booking_start_date"
+                                        id="booking_start_date1" type="hidden"
+                                        name="booking[start_date]1" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-left col-md-5 col-md-offset-1">
+                            <div>
+                                <i class="sprite-icon-time icon-time icon-white">
+                                </i>
+                                <label class="control-label">End date</label>
+                                <div>
+                                    <span class="text-muted" id="end-date-modal">
+                                    </span>
+                                    <input class="booking_start_date"
+                                        id="booking_start_date2" type="hidden"
+                                        name="booking[start_date]2" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spacer-horizontal-half"></div>
+                    <div class="pull-left lending-time">Lending time: <span></span>
+                    </div>
+                    <div class="booking-modal-error"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <ul class="list-unstyled clearfix group-btn-options">
+                    <li>
+                        <button class="btn btn-default pull-left" id="<%=action%>-booking-action">Save</button>
+                    </li>
+                    <li>
+                        <span>or</span>
+                    </li>
+                    <li>
+                        <a class="button reset-booking" href="#">Reset</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Booking Modal-->

@@ -1,0 +1,91 @@
+<div id="users-page" class="col-md-10 content clearfix">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1>
+                <span id="users-counter">All users</span>
+                <button class="btn btn-default pull-right"
+                    data-target=".filters-collapse"
+                    data-toggle="collapse" type="button">
+                    <span >Filters</span><i id="filter" class="filter-button-down pull-right"></i>
+                </button>
+                <% if (loggedUserRole != 'company_user') { %>
+                <button class="btn btn-default pull-right right-spaced-button"
+                    id="add-new-user"
+                    data-target="#add-user-modal"
+                    data-toggle="modal">Add new user
+                </button>
+                <% } %>
+            </h1>
+        </div>
+        <div class="collapse filters-collapse" id="users-filter">
+            <form id="filter-users-form" accept-charset="UTF-8"
+                class="form-search form-horizontal">
+                <fieldset>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="name">
+                                Name
+                            </label>
+                            <div class="col-sm-9" id="modal-users-list">
+                                <input id="name" type="text" name="name"
+                                       class="form-control inputFilter"
+                                       data-placeholder="Search a user ..." >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label pull-left"
+                                for="location_id">
+                                Location
+                            </label>
+                            <div class="col-sm-9 pull-left">
+                                <select
+                                    class="select-location
+                                        form-control selectFilter" name="location_id">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                for="select-title">
+                                Title
+                            </label>
+                            <div class="col-sm-9">
+                                <select
+                                    class="selectTitle chosen-nosearch
+                                        form-control selectFilter" name="title_id">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                for="select-department">
+                                Department
+                            </label>
+                            <div class="col-sm-9">
+                                <select
+                                    class="select-department chosen-nosearch
+                                        form-control selectFilter"
+                                    name="department_id">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-actions" style="margin:20px 0;">
+                            <a class="filters-reset">Reset filters</a>
+                        </div>
+                    </div>
+           
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <ul class="thumbnails list-unstyled clearfix col-md-12" id="users-list">
+    </ul>
+    <div class="col-md-12 text-center" id="paginator"></div>
+</div>
+

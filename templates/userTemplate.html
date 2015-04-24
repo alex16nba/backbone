@@ -1,0 +1,61 @@
+<li class="col-md-6">
+    <div class="white-box clearfix entry">
+        <figure class="pull-left">
+            <a href="#users/<%=id %>" class="link-user-profile">
+                <% if(image_uid) { %>
+                    <img alt="" class="user-list-img" src="<%=image_uid%>">
+                <% } else { %>
+                    <img class="user-list-img" alt="title" src="src/img/dummyicon.png">
+                <% } %>
+            </a>
+        </figure>
+        <% if (_.contains(roles, role) && (loggedUserRole != 'company_user' || loggedUserId == id)) { %>
+        <div class="caption clearfix">
+            <div class="btn-group pull-right " >
+                <div class="dropdown-toggle actions-btn modal-category" data-toggle="dropdown" data-user-id="<%=id%>">Actions
+                    <i class="actions"></i>
+                </div>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="edit-user" data-target="#edit-user-modal" data-toggle="modal" href="#">
+                            Edit
+                        </a>
+                    </li>
+                    <% if(account_status == "Active")  { %>
+                        <% if(loggedUserId != id) { %>
+                            <li>
+                            <a data-target="#suspend-user-alert" class="delete-user" data-toggle="modal" href="#">
+                                Suspend account
+                            </a>
+                        </li>
+
+                        <% } %>
+                        <% if (loggedUserRole === 'company_super_admin' && loggedUserId != id) { %>
+                            <li>
+                                <a data-target="#close-user-alert" class="delete-user" data-toggle="modal" href="#">
+                                    Close account
+                                </a>
+                            </li>
+                        <% } %>
+                    <% } else {%>
+                        <li>
+                            <a data-target="#reactivate-user-alert" class="delete-user" data-toggle="modal" href="#">
+                                Reactivate
+                            </a>
+                        </li>
+
+                    <% } %>
+                </ul>
+            </div>
+            <% } %>
+            <div class="col-md-7 col-xs-4">
+                <h3>
+                    <a href="#users/<%=id %>" class="link-user-profile">
+                        <%=first_name%> <%=last_name%>
+                    </a>
+                </h3>
+                <span class="muted"><%=department_name%></span>
+            </div>
+        </div>
+    </div>
+</li>

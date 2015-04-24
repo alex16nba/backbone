@@ -1,0 +1,209 @@
+<% if(!multiple) {%>
+    <!-- Breadcrums -->
+    <ol class="breadcrumb clearfix"></ol>
+    <hr>
+<% } %>
+<div class="col-md-12 clearfix">
+        <div class="col-md-3 clearfix text-center">
+            <figure>
+                <% if ( (typeof image_uid !='undefined') && (image_uid != "") &&
+                (image_uid) ) { %>
+                    <img class="item-details-img" alt="<%=title%>" src="<%=image_uid%>">
+                <% } else { %>
+                    <img class="item-details-img" alt="title" src="src/img/dummyicon.png">
+                <% } %>
+            </figure>
+            <div class="spacer-horizontal-half"></div>
+        </div>
+        <div class="col-md-6 clearfix">
+    <% if(!multiple) {%>
+            <h1><%=title %></h1>
+            <h2 class="text-muted"><%=master_field_value %></h2>
+            <% if (needs_approval == true) { %>
+                <p>This item needs approval</p>
+            <% } %>
+            <p>Item code: <%=item_code %></p>
+            <% if (active_booking && active_booking.status === "in_progress") { %>
+                <div class="col-md-12 booking-information">
+                    <figure class="col-md-2">
+                        <% if ( (typeof active_booking.user.image_uid !='undefined')
+                            && (active_booking.user.image_uid != "") &&
+                        (active_booking.user.image_uid) ) { %>
+                            <img class="item-details-user-img" alt="<%=active_booking.user.title%>"
+                            src="<%=active_booking.user.image_uid%>">
+                        <% } else { %>
+                            <img class="item-details-user-img" alt="title" src="src/img/dummyicon.png">
+                        <% } %>
+                    </figure>
+                    <div class="col-md-10">
+                        <div>
+                            <i class="text-error sprite-icon-borrowed"></i>
+                            Item is booked until <%= active_booking.end_date%>
+                        </div>
+                        <div>to
+                        <% if(loggedUserRole == 'company_user') { %>
+                            <span class="userName"> <%=active_booking.user.first_name%> <%=active_booking.user.last_name%>
+                            </span>
+                        <% } else { %>
+                            <a class="userName" href="#users/<%=active_booking.user.id%>">
+                                <%=active_booking.user.first_name%> <%=active_booking.user.last_name%>
+                            </a>
+                        <% } %>
+                        </div>
+                        <div class="spacer-horizontal-quarter"></div>
+                        <div class="text-muted"><%=days_left%></div>
+                        <div>Location: <%= location.name%>
+                        </div>
+                    </div>
+                </div>
+            <% } else if (!active_booking || active_booking.status !== "in_progress") { %>
+                <div class="col-md-12 booking-information">
+                    <div>
+                        <i class="text-error sprite-icon-available">
+                        </i>
+                        Item is available.
+                    </div>
+                    <% if(late_for_pickup === true) { %>
+                    <div class="text-muted"><%=days_left%></div>
+                    <% } %>
+                    <div> Location: <%= location.name%> </div>
+                </div>
+            <% } %>
+    <% } else {%>
+        <h1><%=master_field_value %></h1>
+        <h2 class="text-muted"><%=master_property_name %></h2>
+        <div>
+            <div class="col-md-12 booking-information">
+                <i class="text-error sprite-icon-available">
+                </i>
+                    <% if (available === 1) {%>
+                        <span><%=available %> item is available. (out of <%=total %>)</span>
+                    <%} else {%>
+                        <span><%=available %> items are available. (out of <%=total %>)</span>
+                    <% } %>
+            </div>
+        </div>
+ <% } %>
+    <div class="spacer-horizontal-half"></div>
+        <ul class="list-unstyled clearfix group-btn-options">
+            <li>
+                <button id="book-this-item" data-target="#create-booking-modal"
+                    data-toggle="modal" class="btn btn-default pull-left">
+                    Book item
+                </button>
+            </li>
+            <% if (loggedUserRole == 'company_super_admin' ||
+                    isUnderSupervision == true) { %>
+                <li>
+                    <button data-target="#edit-item-modal" data-toggle="modal"
+                    class="btn btn-default pull-left edit-item-details">
+                    Edit
+                    </button>
+                </li>
+                <li>
+                    <button data-target="#clone-item-modal" data-toggle="modal"
+                    class="btn btn-default pull-left clone-item-details">Clone
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-default pull-left delete-item">
+                    Delete
+                    </button>
+                </li>
+            <% } %>
+            <% if(active_booking && (loggedUserRole == 'company_super_admin' ||
+                isUnderSupervision == true || loggedUserId == active_booking.user.id)){ %>
+                <% if (active_booking.status == "accepted" &&
+                    (needs_approval == false ||
+                    isUnderSupervision == true ||
+                    loggedUserRole == 'company_super_admin' ||
+                    (loggedUserId == active_booking.user.id && needs_approval == false))) { %>
+                <li>
+                    <button id="pick-up-item" class="btn btn-success"
+                    value="<%=active_booking.id%>">Pick-Up</button>
+                </li>
+                <% } else if (active_booking.status == "in_progress" &&
+                    (needs_approval == false ||
+                    isUnderSupervision == true  ||
+                    loggedUserRole == 'company_super_admin'||
+                    (loggedUserId == active_booking.user.id && needs_approval == false))) { %>
+                <li>
+                    <button id="return-item" class="btn btn-success"
+                    value="<%=active_booking.id%>">Return item</button>
+                </li>
+                <% } %>
+            <% } %>
+        </ul>
+    </div>
+    <div class="col-md-3 text-right pull-right">
+        <div class="white-box">
+            <div class="clearfix">
+                <div class="pull-right rating">
+                </div>
+            </div>
+            <p class="overal-rating">Overall rating:<span class="rating-mean"></span></p>
+            <div class="button">
+                <a href="#reviews">See all reviews</a>
+                <i class="sprite-icon-next"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-horizontal"></div>
+<% if(!multiple) {%>
+    <div class="col-md-12 clearfix">
+        <h2 class="section-title">Properties</h2>
+        <div class="spacer-horizontal-half"></div>
+        <p><%= description %></p>
+        <div class="row properties">
+        </div>
+    </div>
+<% } %>
+<div class="col-md-12 clearfix">
+    <h2 class="section-title">Bookings</h2>
+    <div class="spacer-horizontal-half"></div>
+    <div id='calendar' class='weekView col-md-12 clearfix'>
+    </div>
+</div>
+<div class="spacer-horizontal"></div>
+<div class="col-md-12 clearfix">
+    <ul class="thumbnails list-unstyled clearfix" id="booking-history"></ul>
+    <a href="#bookings">See all bookings</a>
+    <i class="sprite-icon-next"></i>
+</div>
+<!--Reviews-->
+<div class="spacer-horizontal"></div>
+<div class="col-md-12 clearfix" id="reviews">
+    <div class="nav-tabs clearfix">
+         <!-- Nav tabs -->
+        <div class="pull-right">
+            <span class="pull-left overal-rating">Overal rating:
+                <span class="rating-mean"></span>
+            </span>
+            <span class="pull-left rating">
+            </span>
+            <% if(!multiple) {%>
+                <button id="add-review" class="btn btn-default pull-left"
+                    data-item-id="<%=id%>">
+                    Add review
+                </button>
+            <% } %>
+        </div>
+        <h2 class="section-title">Reviews</h2>
+    </div>
+    <div class="row">
+        <div class="spacer-horizontal-half"></div>
+        <div class="col-md-12">
+            <ul class="list-unstyled" id="item-reviews">
+            </ul>
+            <div id="all-reviews">
+                <a href="#reviews">See all reviews</a>
+                <i class="sprite-icon-next"></i>
+            </div>
+            <div id="no-reviews" class="hide">
+                <p>There are no reviews to be displayed for this item</p>
+            </div>
+        </div>
+    </div>
+</div>
+

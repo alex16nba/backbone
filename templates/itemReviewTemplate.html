@@ -1,0 +1,58 @@
+<li class="clearfix">
+    <div class="col-md-2 white-box starbox pull-left">
+        <div class="positioner" id="review-<%=id%>">
+            <div class="stars">
+                <div class="ghost" style="display: none; width: 60px;"></div>
+                <div class="colorbar" style="width: 60px;"></div>
+                <div class="star_holder">
+                    <div class="star star-0"></div>
+                    <div class="star star-1"></div>
+                    <div class="star star-2"></div>
+                    <div class="star star-3"></div>
+                    <div class="star star-4"></div>
+                </div>
+            </div>
+        </div>
+        <p>Rating: <%=rating%>/5</p>
+        <p>
+            <% if(user_image_uid) { %>
+                <img src="<%=user_image_uid%>" alt="">
+            <% } else { %>
+                <img class="review-user-img" src="src/img/dummyicon.png">
+            <% } %>
+        </p>
+        <p>Added by:</p>
+        <a href="#users/<%=user_id%>"><%= user_first_name %> <%= user_last_name %></a>
+        <p class="muted"><%= time_elapsed %></p>
+    </div>
+    <div class="col-md-8 col-sm-8">        
+        <h4><a href="#items/<%=item_id%>"><%=item_title%><a/></h4>
+        <h5><b><%= title %></b></h5>
+        <p><%= description %></p>
+    </div>
+    <div class="col-md-2">
+        <% if ((loggedUserRole == "company_super_admin") || 
+            (loggedUserRole == "company_admin" && isUnderSupervision == true) || 
+            loggedUserId == user_id ) { %>
+            <div class="btn-group pull-right">
+               <div class="dropdown-toggle modal-review" id="review-action-button"
+                    data-toggle="dropdown" data-review-id=<%=id%> data-item-id=<%=item_id%>>
+                    Actions
+                    <i class="actions"></i>
+                </div>
+                <ul class="dropdown-menu actions-list">
+                    <li>
+                        <a class="edit-review">
+                            Edit review
+                        </a>
+                    </li>
+                    <li>
+                        <a class="delete-review">
+                            Delete
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <% } %>
+    </div>
+</li>

@@ -1,0 +1,13 @@
+<input type="hidden" name="needs_approval" value="false" />
+<label>
+    Needs approval?
+    <input type="checkbox" id="item_needs_approval_true" name="needs_approval" value="true"
+        <% if( typeof needs_approval != 'undefined'){ %>
+                <%if(needs_approval === true) {%>
+                checked
+            <% } %>
+        <% }  %>
+    />
+</label>
+  
+  

@@ -1,0 +1,72 @@
+ <!-- Review Modal -->
+<div class="modal fade" id="<%=scope%>-review-modal" data-item-id="<%=itemId%>" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">&times;
+                </button>
+
+                <h4 class="modal-title" id="myModalLabel"><%=modalTitle%></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="col-md-12 hide" id="modal-items-list">
+                            <p>Please select the item to make this review for</p>
+
+                            <input type="text" class="form-control typeahead"
+                                placeholder="Search an item ...">
+                            <div class="spacer-horizontal"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <p>Review title</p>
+
+                            <input id="<%=scope%>-review-title" name="title" type="text" class="form-control typeahead" value="<%= typeof(title) != 'undefined' ? title : '' %>">
+                            <div class="spacer-horizontal"></div>
+                        </div>
+                        <div class="white-box clearfix" id="item-info">
+
+                        </div>
+                        <p class="select-rating">
+                            Please select a rating and add your review
+                        </p>
+                        <div class="pull-left <%=scope%>-rating"></div>
+                        <h5 class="pull-right <%=scope%>-overall-rating"></h5>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <!-- must be modified -->
+                                <textarea class="form-control" id="<%=scope%>-review-description" rows="3"><%=description%></textarea>
+                                <!-- must be modified -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+            <% if(scope === "edit") {%>
+            <!-- must be modified -->
+                <ul class="list-unstyled clearfix group-btn-options">
+                    <li>
+                        <button id="update-review" class="btn btn-default"
+                            data-dismiss="modal">Update review</button>
+                    </li>
+                    <li>
+                        <span>or</span>
+                    </li>
+                    <li>
+                        <a class="button" id="reset-review" href="">Reset</a>
+                    </li>
+               </ul>
+               <% } else {%>
+                    <div class="text-center">
+                        <button id="submit-review" class="btn btn-default"
+                            data-dismiss="modal">Add review</button>
+                    </div>
+               <% } %>
+            <!-- must be modified -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Review Modal

@@ -1,0 +1,70 @@
+<% _.each(properties_attributes,function(attrib, index) { %>
+<div class="property">
+    <h2>Property
+    <span class="pull-right">
+        <a class="text-info small remove_nested_fields"
+            data-id="<%=index%>">Remove property
+        </a>
+    </span>
+    </h2>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Name
+        </label>
+        <div class="col-sm-6">
+            <input class="form-control col-sm-6"  name="properties_attributes[<%=index%>].name" size="30" type="text" value="<%= attrib.name %>"/>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="control-label">
+            <label class="control-label col-sm-3">
+            Property type
+            </label>
+        </div>
+
+        <div class="controls col-sm-6">
+            <select class="col-sm-3 form-control"
+            name="properties_attributes[<%=index%>].property_type">
+                <option value="text">Single Value</option>
+                <option value="select" selected="selected">
+                Select Value</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <input class="form-control"
+             name="properties_attributes[<%=index%>].select_values[]"
+            size="30" type="text" value="<%=attrib.select_values %>" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Set property as
+        </label>
+        <div class="col-sm-6">
+            <label class="label_radio" for="10">
+               <input
+                name="properties_attributes[<%=index%>].master"
+                type="hidden" value="0"
+                <% attrib.master == false ? print("checked") : '' %> />
+                <input type="radio" name="properties_attributes[<%=index%>].master"
+                value="true"
+                <% attrib.master == true ? print("checked") : '' %> /> Master
+            </label>
+        </div>
+    </div>
+    <input name="properties_attributes[<%=index%>].id" type="hidden" value= "<%=attrib.id%>"/>
+</div>
+
+    <div id="destroy_property"></div>
+
+<% }); %>
+    <div class="add-nested-fields-container">
+        <a class="button add_edit_nested_fields">
+            Add property
+        </a>
+    </div>

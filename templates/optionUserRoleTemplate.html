@@ -1,0 +1,14 @@
+<% if(typeof selectedType!='undefined'){ %>
+    <option value="">Please select a <%=selectedType%></option>
+<%} %>
+<% for ( var i in data) { %>
+    <% if ( typeof Id != 'undefined') { %>
+        <% if(Id == data[i].role ) { %>
+            <option selected value='<%=data[i].role %>'><%= data[i].role %></option>
+        <% } else { %>
+            <option value='<%=data[i].role %>'><%= data[i].role %></option>
+        <% } %>
+    <% } else {%>
+            <option value='<%=data[i].role %>'><%= data[i].role %></option>
+    <% } %>
+<% } %>

@@ -1,0 +1,24 @@
+<li class="col-md-6">
+    <div class="white-box clearfix">
+        <div class="caption clearfix">
+        <% if (loggedUserRole == 'company_super_admin') { %>           
+            <% if(is_default == false) { %>
+
+                <div class="btn-group pull-right">
+                    <div class="location-actions dropdown-toggle" data-toggle="dropdown" data-location-id="<%=id%>">Actions <i class="actions"></i>
+                    </div>
+             
+                    <ul class="dropdown-menu">
+                        <li><a data-target="#edit-location-modal" data-toggle="modal">Edit</a></li>
+                        <li><a data-target=".bs-example-modal-sm" data-toggle="modal" href="#"> Delete </a></li>                   
+                    </ul>
+                </div>
+
+            <%} %>           
+        <% } %>
+            <div class="col-md-8 col-xs-4">
+                <h3><%=name%></h3><span class="text-muted"><%=address%></span>
+            </div>
+        </div>
+    </div>
+</li>

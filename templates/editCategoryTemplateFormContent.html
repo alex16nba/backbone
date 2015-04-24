@@ -1,0 +1,43 @@
+<form class="form-horizontal" id="<%=modalId%>-category-form">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Name</label>
+
+            <div class="col-sm-6">
+                <input class="form-control" id="category-name"
+                name="name" type="text" value='<%=name%>'>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Image</label>
+
+            <div class="col-sm-2">
+                <input id="<%=modalId%>-image-inputs"
+                type="file">
+                <input id="retained-image"
+                type="hidden">
+            </div>
+            <% if (typeof image_uid !='undefined') { %>
+                <% if ( image_uid != "[object HTMLInputElement]")
+                    { %><img alt="<%=name%>" class="img-edit-category"
+                        src="<%=image_uid%>">
+                    <% } %>
+                <% } else { %>
+                <img alt="name" class="img-add-category"
+                            src="src/img/dummyicon.png">
+                <% } %>
+        </div>
+
+        <div class="form-group" id="<%=modalId%>-approval">
+
+        </div>
+        <div class="add-nested-fields-container"></div>
+
+        <div class='underlined <%=modalId%>-property-category'>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+<!---edit category template forma-->
+</form>

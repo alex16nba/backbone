@@ -1,0 +1,78 @@
+ Review Modal -->
+<div class="modal fade" id="review-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">&times;
+                </button>
+
+                <h4 class="modal-title" id="myModalLabel">modalTitle</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="white-box clearfix">
+                            <figure class="pull-left">
+                                <!-- must be modified -->
+                                <img alt="<%=itemTitle %>"
+                                src="<%=itemImage%>">
+                                <!-- must be modified -->
+                            </figure>
+
+                            <div class="caption clearfix">
+                                <div class="col-md-7">
+                                    <h3>
+                                        <a href="#items/<%=itemId %>"
+                                            data-dismiss="modal">
+                                             <!-- must be modified -->
+                                            <%=item.title %>
+                                             <!-- must be modified -->
+                                        </a>
+                                    </h3>
+                                     <!-- must be modified -->
+                                    <span class="text-muted"><%=masterPropertyName%>: <%=masterFieldValue%></span>
+                                    <p class="text-muted">
+                                        Category: <span><%=categoryName%></span>
+                                    </p>
+                                     <!-- must be modified -->
+                                </div>
+                            </div>
+                        </div>
+                        <p class="select-rating">
+                            Please select a rating and add your review
+                        </p>
+                        <div class="pull-left modify-rating"></div>
+                        <h5 class="pull-right overall-rating"></h5>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <!-- must be modified -->
+                                <textarea id="review" class="form-control" rows="3"
+                                ><%=description%></textarea>
+                                <!-- must be modified -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+            <!-- must be modified -->
+                <ul class="list-unstyled clearfix group-btn-options">
+                    <li>
+                        <button id="update-review" class="btn btn-default pull-left"
+                            data-dismiss="modal">Update review</button>
+                    </li>
+                    <li>
+                        <span>or</span>
+                    </li>
+                    <li>
+                        <a class="button" id="reset-review" href="">Reset</a>
+                    </li>
+               </ul>
+            <!-- must be modified -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Review Modal

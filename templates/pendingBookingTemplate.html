@@ -1,0 +1,96 @@
+<!--Pending Requests Entry Template-->
+<li>
+    <div class="white-box clearfix">
+        <figure class="media">
+            <!-- TODO url for user and item image -->
+            <% if ( (typeof user.image_uid !='undefined') && (user.image_uid != "") &&
+            (user.image_uid) ) { %>
+                <img class="item-img pending-booking-image" alt="<%=user.first_name%><%=user.last_name%>" src="<%=user.image_uid%>">
+            <% } else { %>
+                <img class="item-img pending-booking-image" alt="title" src="src/img/dummyicon.png">
+            <% } %>
+            <% if ( (typeof item.image_uid !='undefined') && (item.image_uid != "") &&
+            (item.image_uid) ) { %>
+                <img class="item-img pending-booking-image" alt="<%=item.title%>" src="<%=item.image_uid%>">
+            <% } else { %>
+                <img class="item-img pending-booking-image" alt="title" src="src/img/dummyicon.png">
+            <% } %>
+
+        </figure>
+        <div class="pending-information col-md-10 col-xs-12 col-sm-10">
+            <div class="user-action">
+                <a href="#users/<%=user.id%>" id="user-name"><%= user.first_name %> <%= user.last_name %></a> wants to book
+                <a href="#items/<%=item_id%>" id="device"><%= item.title %>
+
+                <% if (booking_days == 1) {%>
+                    </a> for <%= booking_days %> day
+                <% } else { %>
+                    </a> for <%= booking_days %> days
+                <% } %>
+            </div>
+
+            <ul class="clearfix list-unstyled">
+                <li>Start date:
+                    <span class="text-muted"><%= start_date %></span>
+                </li>
+                <li>End date:
+                    <span class="text-muted"><%= end_date %></span>
+                </li>
+            </ul>
+            <% if (status == "accepted") { %>
+                <p class="status-label"><i class="sprite-icon-accepted"></i>
+                    Booking request is <%= status.split("_").join(" ") %></p>
+            <% } else  { %>
+                <p class="status-label"><i class="sprite-icon-pending"></i>
+                Booking request is <%= status.split("_").join(" ") %></p>
+            <% } %>
+            <!-- TODO insert extended until date -->
+            <% if (end_date_pending!==null) { %>
+                <p class="text-muted text-left">
+                    Extend until <%=end_date_pending%>
+                </p>
+            <% } %>
+            <% if (in_conflict == false) { %>
+            <ul class="clearfix list-unstyled group-btn-mini">
+                <li class="pull-left">
+                    <button data-booking-id="<%= id %>" class="btn btn-default accept-booking">
+                        <span class="glyphicon glyphicon-ok">&nbsp;</span>Accept
+                    </button>
+                </li>
+                <li class="pull-left">
+                    <button data-booking-id="<%= id %>" class="btn btn-default reject-booking">
+                        <span class="glyphicon glyphicon-remove">&nbsp;</span>Reject
+                    </button>
+                </li>
+            </ul>
+            <% } %>
+
+            <% if (in_conflict == true) { %>
+                <% if (currentPage == "bookings"){ %>
+                <div class="alert alert-danger col-md-12 col-sm-12 col-xs-12 booking-warning">
+                    <div class="col-md-1 col-sm-1 col-xs-2">
+                        <span class="glyphicon glyphicon-random" style="font-size: 30px"></span>
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-xs-5">
+                        <p><strong>Booking dates are overlapping!</strong><br/>
+                        Please decide which one is more important!</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-5">
+                        <button type="button" class="btn btn-default pull-right show-conflicts" value="<%=id%>">
+                            Show Conflicts
+                        </button>
+                    </div>
+                </div>
+                <% } else { %>
+                <div class="alert alert-danger col-md-12 col-sm-12 col-xs-12 booking-warning">
+                    <p><strong>Booking dates are overlapping!</strong><br/>
+                    Please decide which one is more important!</p>
+                    <button type="button" class="btn btn-default pull-right show-conflicts" value="<%=id%>">
+                        Show Conflicts
+                    </button>
+                </div>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</li>

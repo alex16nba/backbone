@@ -1,0 +1,22 @@
+ <div class="dash-booking clearfix white-box" style="margin-top:10px">
+    <figure class="pull-left">
+        <img alt="" src="<%=user_image_uid%>">
+        <img alt=""
+            src=<% if (item == 'review' ||
+                       title == "N/A" ||
+                       item_image_uid === null) { %>
+                       "src/img/item2.jpg" style="width: 23px; height: 23px"
+                <% } else { %>
+                    "<%=item_image_uid%>"
+                <% } %>
+        >
+    </figure>
+
+    <div class="col-md-10 col-xs-9">
+        <a href="#users"><%=username  %> </a>
+        <%=action + bindWord + item %>: <a href="#items"><%=title %>
+        </a>
+        <p class="muted time">about <%=timeElapsed%></p>
+    </div>
+</div>
+

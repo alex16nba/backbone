@@ -1,0 +1,41 @@
+<aside class="sidebar col-md-2" style="position:relative;">
+    <div class="nav-fixed-right">
+        <div class="user-info text-center">
+            <figure>
+                <%if(image_uid) { %>
+                    <img class="user-image"src="<%=image_uid%>" alt="No image">
+                <% } else { %>
+                    <img class="user-image" src="src/img/dummyicon.png" alt="No image">
+                <% } %>
+                <div class="btn-group">
+                    <div class="options dropdown-toggle" data-toggle="dropdown">
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a  class="edit-account"data-target="#edit-account-modal" data-toggle="modal" href="#" >Edit account</a></li>
+                        <li><a class="log-out-modal" data-target="#logOutModal" data-toggle="modal" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </figure>
+
+            <h3 class="user-name"><%=first_name%> <%=last_name%></h3>
+
+            <p><span class="user-title label-blue"><%=role.split("_").join(" ")%></span></p>
+        </div>
+
+        <ul class="nav-vertical clearfix list-unstyled">
+            <li id="dashboard-side-nav" class='current'>
+                <i class="sprite-icon-dashboard"></i>
+                <a href="#">Dashboard</a>
+            </li>
+            <li id="all-activity-side-nav"><i class="sprite-icon-allactivity"></i>
+                <a href="#">All Activity</a>
+            </li>
+            <li id="my-activity-side-nav"><i class="sprite-icon-myactivity"></i>
+                <a href="#">My Activity</a>
+            </li>
+            <li id="profile-side-nav"><i class="sprite-icon-account"></i>
+                <a href="#">My Profile</a>
+            </li>
+        </ul>
+    </div>
+</aside>

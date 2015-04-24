@@ -1,0 +1,90 @@
+<div class="col-md-10 content clearfix">
+    <ol class="breadcrumb"></ol>
+    <div class="col-md-12">
+        <div id="addItem"></div>
+        <div class="page-header">
+            <h1>
+                <span class="categoryDetails"></span>
+                <button id="filterBtn" class="btn btn-default pull-right"
+                    data-target=".filters-collapse"
+                    data-toggle="collapse" type="button">
+                    <span >
+                        Filters
+                        <i id="filter" class="filter-button-down pull-right">
+                        </i>
+                    </span>
+                </button>
+                    <% if (loggedUserRole == 'company_super_admin' ||
+                        loggedUserRole == 'company_admin') { %>
+                        <button
+
+                            class="btn btn-default pull-right right-spaced-button add-item" type="button">
+                            Add Item
+                        </button>
+                    <% } %>
+            </h1>
+        </div>
+        <div class="collapse filters-collapse" id="items-filter">
+            <form accept-charset="UTF-8" action="/evo/items"
+                class="form-search form-horizontal items-form" method="get">
+                <fieldset>
+
+                    <div class="col-sm-6 general-input">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                for="title">Item Name</label>
+                            <div class="col-sm-7">
+                                <input class="form-control item-field-select
+                                item-field-general inputFilter" id="title" placeholder=""
+                                       type="text" name="title">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                for="item_code">Item code</label>
+                            <div class="col-sm-5">
+                                <input class="form-control item-field-select
+                                item-field-general inputFilter" id="item_code"
+                                       placeholder="" type="text" name="item_code">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                   for="location_id">Location</label>
+                            <div class="col-sm-7">
+                                <select class="form-control item-field-select
+                                item-field-general selectFilter" id="item-location-id" name="location_id">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                   for="available">Availability</label>
+                            <div class="col-sm-5">
+                                <select class="form-control item-field-select
+                                item-field-general selectFilter" id="available" name="available">
+                                    <option value="">All Items</option>
+                                    <option value="true">Available</option>
+                                    <option value="false">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-actions" style="margin:20px 0;">
+                            <a class="filters-reset">Reset filters</a>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- Item Collection container -->
+    <div class="col-md-12 thumbnails list-unstyled clearfix item-collection-container">
+    </div>
+    <div class="col-md-12 text-center" id="paginator"></div>
+</div>

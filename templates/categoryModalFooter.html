@@ -1,0 +1,17 @@
+<ul class="list-unstyled clearfix group-btn-options
+    edit-category-footer">
+    <li>
+        <% if (typeof categoryId == 'number') { %>
+            <input class="btn btn-default pull-left save_property" id = "save-property"
+             value="<%=modalFooter%>">
+        <% } else { %>
+            <input class="btn btn-default pull-left save_category"
+            type="submit" value="<%=modalFooter%>">
+
+        <% } %>
+        <span> &nbsp; or</span>
+        <a href="#" class="reset-inputs">
+            Reset
+        </a>
+    </li>
+</ul>

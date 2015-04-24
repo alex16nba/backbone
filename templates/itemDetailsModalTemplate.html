@@ -1,0 +1,27 @@
+<div id="item-details-modal">
+    <figure class="pull-left"> 
+        <%if(image_uid) { %>
+            <img class="item-details-modal" src="<%=image_uid%>" alt="image">
+        <% } else { %>
+            <img class="item-details-modal" src="src/img/dummyicon.png" alt="No image">
+        <% } %>
+    </figure>
+    <div class="caption clearfix">
+        <div class="col-md-7">
+            <h3>
+                <a href="#items/<%=id%>"
+                    data-dismiss="modal">
+                     <!-- must be modified -->
+                    <%=title%>
+                     <!-- must be modified -->
+                </a>
+            </h3>
+             <!-- must be modified -->
+            <span class="text-muted"><%=master_property_name%>: <%=master_field_value%></span>
+            <p class="text-muted">
+                Category: <span><%=category.name%></span>
+            </p>
+             <!-- must be modified -->
+        </div>
+    </div>
+</div>

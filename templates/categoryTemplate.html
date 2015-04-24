@@ -1,0 +1,39 @@
+<div class="white-box clearfix entry">
+    <figure class="pull-left col-md-3 word-break">
+        <% if(image_uid) { %>
+        <img class="category-img" alt="<%=name%>" src="<%=image_uid%>">
+        <% } else { %>
+            <img class="category-img" alt="title" src="src/img/dummyicon.png">
+        <% } %>
+    </figure>
+    <div class="caption clearfix">
+    <% if (loggedUserRole == 'company_super_admin') { %>
+        <div class="btn-group pull-right">
+            <div class="actions-button dropdown-toggle modal-category"
+                data-toggle="dropdown"  data-categ-id="<%=id%>">
+                Actions <i class="actions"></i>
+            </div>
+            <ul class="dropdown-menu">
+                <li>
+                    <a  id="edit-category-button"
+                        data-target="#edit-category-modal"
+                        data-toggle="modal" href="#">Edit Category
+                    </a>
+                </li>
+                <li>
+                    <a  id="delete-category-button"
+                        data-target=".bs-example-modal-sm"
+                        data-toggle="modal" href="#">Delete
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <% } %>
+        <div class="col-md-7 col-xs-4">
+            <h3 class="word-break">
+                <a href="#category/<%=id%>/items"><%=name%></a>
+            </h3>
+            <span class="text-muted"><%=items_count%> items</span>
+        </div>
+    </div>
+</div>

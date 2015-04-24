@@ -1,0 +1,21 @@
+<div class="form-group" id="input_edit">
+    <label class="col-sm-2 control-label"
+       for="item_fields_attributes_<%=fieldId%>_value"><%= fieldName %>
+    </label>
+    <div class="col-sm-8">
+        <select id="<%=fieldId%>"
+            class="form-control resetable"
+            name="item_property">
+            <option value="">None</option>
+    <% _.each(options,function(option) { %>
+        <% if ( typeof selected != 'undefined' && selected == option ) { %>
+            <option value="<%= option%>" selected><%= option %></option>
+        <% } else { %>
+            <option value="<%= option%>"><%= option %></option>
+        <% } %>
+    <% }); %>
+        </select>
+        <input id="category_id_holder" type="hidden"
+        value="<%=idCategory%>"></input>
+    </div>
+</div>

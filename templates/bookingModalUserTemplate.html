@@ -1,0 +1,11 @@
+<label for="booking_user_id_<%=id %>" class="selectOption">
+    <% if (image_uid) { %>
+        <img alt="<%=name %>" class="pull-left"
+        src=<%=image_uid%>>
+    <% } else { %>
+        <img alt="name" class="booking-user-img pull-left" src="src/img/dummyicon.png">
+    <% } %>
+    <h5><%=name %></h5>
+    <p>Location: <%=location_name %></p>
+</label>
+

@@ -1,0 +1,43 @@
+<li>
+	<% if (status == 'pending') { %>
+	<div class="alert alert-warning clearfix">
+	<% } else if (status == 'accepted') { %>
+	<div class="alert alert-success clearfix">
+	<% } else { %>
+	<div class="alert alert-danger clearfix">
+	<% } %>
+		<div class="user-action col-md-9">
+		<% if (status == 'pending' || status == 'accepted') { %>
+			<p><%= user.first_name%> <%=user.last_name %> wants to book <%= item.title %> for
+			<% if (booking_days == 1) {%>
+	                    <%= booking_days %> day
+	                <% } else { %>
+	                    <%= booking_days %> days
+	                <% } %></p>
+
+	    <% } else { %>
+	    	<p><%= item.title %> is curently in the possession of
+	    	<%= user.first_name%> <%=user.last_name %> until <%=end_date%></p>
+	    <% } %>
+		<p> Start date: <span class="text-muted"><%= start_date %></span></p>
+		<p> End date: <span class="text-muted"><%= end_date %></span></p>
+		<p> This booking is <strong><%=status.split("_").join(" ")%></strong>.</p>
+		</div>
+		<% if (status == 'pending') { %>
+			<div class="col-md-3">
+				<br/><br/><br/><br/>
+                <button data-booking-id="<%= id %>" class="btn btn-default accept-booking pull-right">
+                    <span class="glyphicon glyphicon-ok">&nbsp;</span>Accept
+                </button>
+			</div>
+		<% } else if (status == 'accepted') { %>
+			<div class="col-md-3">
+				<br/><br/><br/><br/>
+                <button data-booking-id="<%= id %>" class="btn btn-default accept-booking pull-right">
+                    <span class="glyphicon glyphicon-ok">&nbsp;</span>Confirm
+                </button>
+			</div>
+		<% } %>
+	</div>
+</li>
+

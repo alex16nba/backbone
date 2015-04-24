@@ -1,0 +1,46 @@
+<div id="add-<%=type%>-csv-modal" class="modal bs-example-modal-md"
+    tabindex="-1">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">
+                    ×
+                </button>
+                <h4 class="modal-title" id="mySmallModalLabel">
+                   Add <%=type%> CSV File
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>The text file should look like this:</p>
+                <ul class="list-unstyled">
+                <% if (type === 'items'){ %>
+                    <pre>Title[Req],ItemCode[Opt],Description[Opt],Category[Opt],Location[Opt]
+Kindle,123,Read stuff,Gadgets,Main Building
+Screwdriver,125,,Tools,
+Pot,,,,
+                    </pre>
+                <% } else if (type === 'users') { %>
+                    <pre>Email[Req],First Name[Req],Last Name[Req],UserName[Req],Phone No.[Opt]</br>
+john.doe@fake.com,John,Doe,john.doe,</br>
+emmi.gail@fake.com,Emmi,Gail,emmi.gail,555-777-22
+                    </pre>
+                <% } %>
+                </ul>
+                <form id="<%=type%>-csv-form">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                    <span>Choose your text file:</span>                                               
+                    <input type="file" id="csv" class="browse-csv" data-filename-placement="inside">
+                    </div>                    
+                </div>
+                </form>              
+                <hr>
+                <div class="text-center">
+                    <button type="button" value="Send CSV file" class="btn btn-default" id="upload-csv">Upload File</button>
+                    <span> or </span>
+                    <a class="button" data-dismiss="modal" href="">Cancel</a>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

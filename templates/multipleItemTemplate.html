@@ -1,0 +1,66 @@
+<div class="clearfix">
+    <div class="white-box clearfix master-item">
+        <div class="multiple-toggle glyphicon glyphicon-plus pull-left"></div>
+        <figure class="pull-left col-md-2">
+            <% if ( (typeof image_uid !='undefined') && (image_uid != "") &&
+            (image_uid) ) { %>
+                <img class="item-img" alt="<%=title%>" src="<%=image_uid%>">
+            <% } else { %>
+                <img class="item-img" alt="<%=title%>" src="src/img/dummyicon.png">
+            <% } %>
+        </figure>
+
+        <div class="caption clearfix">
+            <div class="btn-group pull-right" data-item-id="<%=master_field_value%>">
+                <div class="actions-button dropdown-toggle modal-item" data-toggle="dropdown">
+                    Actions
+                    <i class="actions"></i>
+                </div>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="book-item-modal">
+                            Book item
+                        </a>
+                    </li>
+                    <% if (loggedUserRole == 'company_super_admin' ||
+                            loggedUserRole == 'company_admin') { %>
+                        <li>
+                            <a  data-toggle="modal">
+                                Edit item
+                            </a>
+                        </li>
+                        <li>
+                            <a data-target="#delete-category-alert" data-toggle="modal">
+                                Delete
+                            </a>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+
+            <div class="col-md-8 col-xs-7">
+
+                <h3>
+                    <a href="#category/<%=categoryId%>/items/<%=master_field_value%>/multiple">
+                        <%= master_field_value %>
+                    </a>
+                </h3>
+
+                <span class="text-muted">
+                    <%=master_property_name%> : <%= master_field_value %>
+                </span>
+
+                <p>
+                    <div class="glyphicon glyphicon-ok"></div>
+                    <%=availableItems%> items available (out of <%=totalItems%>)
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="multiple-appended"></div>
+    <ul class="single-items-container list-unstyled">
+    </ul>
+</div>

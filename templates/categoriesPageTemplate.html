@@ -1,0 +1,105 @@
+<div class="col-md-10 content clearfix" id="categories_page">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1 id="all_items_header"><span class="collectionDetails"></span>
+                <button id="filterBtn" class="btn btn-default pull-right" data-target=".filters-collapse"
+                    data-toggle="collapse" type="button">
+                    <span >
+                        Filters
+                        <i id="filter" class="filter-button-down pull-right">
+                        </i>
+                    </span>
+                </button>
+            <% if (loggedUserRole !== 'company_user') { %>
+                <button class="btn btn-default pull-right right-spaced-button"
+                    data-target="#add-category-modal"
+                    data-toggle="modal" type="button"> Add Category
+                </button>
+                <button class="btn btn-default pull-right right-spaced-button"
+                    id="add-csv">
+                    Upload a CSV file
+                </button>
+                <button data-target="#add-item-modal" data-toggle="modal"
+                    class="btn btn-default pull-right right-spaced-button"
+                    id="add-item">
+                    Add Item
+                </button>
+            <% } %>
+            </h1>
+        </div>
+        <div class="collapse filters-collapse" id="items-filter">
+            <form accept-charset="UTF-8" action="/evo/items"
+                class="form-search form-horizontal items-form" method="get">
+                <fieldset>
+
+                    <div class="col-sm-6 general-input">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                for="title">Item Name</label>
+                            <div class="col-sm-7">
+                                <input class="form-control item-field-select
+                                item-field-general inputFilter" id="title" placeholder=""
+                                       type="text" name="title">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                for="item_code">Item code</label>
+                            <div class="col-sm-5">
+                                <input class="form-control item-field-select
+                                item-field-general inputFilter" id="item_code"
+                                       placeholder="" type="text" name="item_code">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                   for="item-location-id">Location</label>
+                            <div class="col-sm-7">
+                                <select class="form-control item-field-select
+                                item-field-general selectFilter add-location" id="item-location-id" name="location_id">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                   for="category_id">Category</label>
+                            <div class="col-sm-7">
+                                <select class="form-control item-field-select
+                                item-field-general selectFilter add-category" id="item-category-id" name="category_id">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                   for="available">Availability</label>
+                            <div class="col-sm-5">
+                                <select class="form-control item-field-select
+                                item-field-general selectFilter" id="available" name="available">
+                                    <option value="">All Items</option>
+                                    <option value="true">Available</option>
+                                    <option value="false">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-actions" style="margin:20px 0;">
+                            <a class="filters-reset">Reset filters</a>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- All categories will enter in categories_container -->
+    <ul id="categories_container" class="thumbnails list-unstyled clearfix
+        col-md-12">
+    </ul>
+    <div class="col-md-12 text-center" id="paginator"></div>
+</div>
+

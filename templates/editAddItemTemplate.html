@@ -1,0 +1,88 @@
+<div class="col-md-8">
+    <div class="form-group">
+        <label for="item_title" class="col-sm-3 control-label"
+            for="item_title" >
+         Name</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control resetable"
+                id="item_title" name="title"
+            <% if (typeof title !='undefined') { %>
+                  value="<%=title %>"
+            >
+            <% } %>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="item_item_code" class="col-sm-3 control-label">
+            Item code
+        </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control resetable"
+                id="item_item_code"
+                name="item_code"
+                value="<%=item_code %>">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="item_category_id"
+            class="col-sm-3 control-label">
+        Category</label>
+        <div class="col-sm-9">
+            <select class="form-control <%=action%>-category"
+                id="item-category-id"
+                name="category_id">
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="location" class="col-sm-3 control-label">
+            Location</label>
+        <div class="col-sm-9">
+            <select class="form-control <%=action%>-location"
+                id="item-location-id"
+                name="location_id">
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 text-center">
+    <div class="form-group form-img-frame">
+        <div class="item-modal-img text-center">
+        <% if ( (typeof image_uid !='undefined') && (image_uid != "")
+            && (image_uid) && (image_uid != "[object HTMLInputElement]")) { %>
+            <img alt="<%=name%>" class="img-<%=action%>-item"
+                src="<%=image_uid%>">
+        <% } else { %>
+            <img alt="name" class="img-<%=action%>-item" src="src/img/dummyicon.png">
+        <% } %>
+        </div>
+
+        <input class="file_field resetable"
+            id="<%=action%>-item-image_to_upload" name="file" type="file" title="Select image">
+        <input id="item_retained_image"
+           name="retained_image" type="hidden">
+    </div>
+</div>
+
+<div class="col-md-12">
+
+    <div class="form-group">
+        <label for="item_description" class="col-sm-2 control-label" >
+            Description
+        </label>
+        <div class="col-sm-10">
+            <textarea class="form-control textarea-style resetable"
+                name="description" id="item_description"><%=description%></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="approval col-md-4 checkbox"></div>
+    </div>
+
+</div>
+

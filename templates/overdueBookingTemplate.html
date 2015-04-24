@@ -1,0 +1,40 @@
+<li>
+    <div class="white-box clearfix">
+        <figure class="pull-left">
+            <% if (item.image_uid) { %>
+            <img alt="<%=item.title%>"
+                src="<%=item.image_uid%>">
+            <% } else { %>
+                <img class="overdue-item-img" alt="title" src="src/img/dummyicon.png">
+            <% } %>
+        </figure>
+        <div class="pull-left col-md-10 col-xs-9">
+            <p><a href="#items/<%=item_id%>"><%=item.title%></a></p>
+            <% if (overdue_days == 1) { %>
+            <p class="text-error">
+                <i class="sprite-icon sprite-icon-overdue"></i>
+                <%=overdue_days%> day overdue
+            </p>
+            <% } else if (overdue_days <= 90) { %>
+            <p class="text-error">
+                <i class="sprite-icon sprite-icon-overdue"></i>
+                <%=overdue_days%> days overdue
+            </p>
+            <% } else { %>
+            <p class="text-error">90+ days overdue</p>
+            <% } %>
+            <div class="clearfix">
+                <figure class="pull-left" style="margin-right: 10px;">
+                    <% if (user_img_uid) { %>
+                    <img alt="" class="small-user-img" src="<%=user_image_uid%>">
+                    <% } else { %>
+                        <img class="small-user-img" alt="title" src="src/img/dummyicon.png">
+                    <% } %>
+                </figure>
+                <div class="pull-left">
+                    Item is at <a href="#users"><%=user_first_name%> <%=user_last_name%></a> in <a href="#location"><%=item.location.name%></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
